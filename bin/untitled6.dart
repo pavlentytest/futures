@@ -53,7 +53,7 @@ void main5() {
 
   print("Завершение функции main");
 }
-void main() {
+void main6() {
   Future<String> future = Future.delayed(
       Duration(seconds: 1),
           () {
@@ -71,4 +71,41 @@ void main() {
       .whenComplete(() { print("Future завершил свою работу"); });
 
   print("Ждем получения значения из Future");
+}
+
+/* String createOrderMessage() {
+  var order = fetchUserOrder();
+  return 'Your order is: $order';
+}
+
+Future<String> fetchUserOrder() =>
+    // Imagine that this function is
+// more complex and slow.
+Future.delayed(
+  const Duration(seconds: 20),
+      () => 'Large Latte',
+);
+
+void main7() {
+  print('Fetching user order...');
+  print(createOrderMessage());
+}
+*/
+
+Future<String> createOrderMessage() async {
+  var order = await fetchUserOrder();
+  return 'Your order is: $order';
+}
+
+Future fetchUserOrder() =>
+    // Imagine that this function is
+// more complex and slow.
+Future.delayed(
+  const Duration(seconds: 5),
+      () => print("Large Latte")
+);
+
+main() {
+  print('Fetching user order...');
+  createOrderMessage();
 }
